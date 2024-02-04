@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random color example-event handler attribute</title>
+    <style>
+        button{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+        <button>Change color</button>
+    
+    
+    <script>
+        //Try changing click to the following different values in turn
+        //1. focus and blur : Color changes when the button is focused or unfocused. Try pressing the tab key to focus and unfocus.These are often used to display information about filling in form fields when they are focused, or to display an error message if a form field is filled with an incorrect value.
+        //2. dblclick - color changes only when the button is double clicked
+        //3. mouseover and mouseout -color changes whn the mouse pointer hovers over the button,or when the pointer moves off the button
+        //Some events such as click are available nearly on any element.Whereas others are more specific and useful only in certain situations such as play is avbl only on certain elements such as video or audio
+        const btn = document.querySelector("button");
+        btn.addEventListener("click",changeBackground);
+        function changeBackground(){
+            const randomColor = `rgb(${random(240)},${random(467)},${random(245)})`;
+            document.body.style.backgroundColor = randomColor;
+
+        }
+
+        function random(number){
+            return Math.floor(Math.random()*number);
+        }
+
+        //REMOVING LISTENERS
+        //If you added an event handler using addEventListener() you can remove it using removeEventListener()
+        btn.removeEventListener("click",changeBackground);
+
+        //Method 2 : using an abort signal
+
+        //ADDING MULTIPLE LISTENERS FOR A SINGLE EVENT
+        //you can have multiple event handlers for a single event
+        //Both events would now run when the button is clicked
+
+        btn.addEventListener("click",changeBackground);
+        btn.addEventListener("click",newText);
+       
+        // const section = document.querySelector("section");
+        function newText(){
+            const para = document.createElement("p");
+            para.textContent = "The background color has been changed";
+            // section.appendChild(para);
+            document.body.appendChild(para);
+        }
+    </script>
+</body>
+</html>
